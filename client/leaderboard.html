@@ -1,33 +1,51 @@
 <head>
-    <title>Leaderboard</title>
+    <title>My Leaderboard App</title>
 </head>
 <body>
-    <h1>Leaderboard</h1>
-    {{> loginButtons}}
-    {{> leaderboard}}
-    {{> addPlayerForm}}
+    <div class="jumbotron">
+        <h1>My Leaderboard App</h1>
+        <div class="btn login">
+            {{> loginButtons}}
+        </div>
+        <div class="leaderboard">
+            {{> leaderboard}}
+        </div>
+        <div>
+            {{> addPlayerForm}}
+        </div>
+    </div>
 </body>
 
 <template name="leaderboard">
-    {{#each player}}
-        <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
-    {{/each}}
+    <ol id="leaderboard">
+        {{#each player}}
+            <li class="player {{selectedClass}}">{{name}}:
+                {{score}}</li>
+        {{/each}}
+    </ol>
     {{#if showSelectedPlayer}}
     <li>
-        Selected Player: {{showSelectedPlayer.name}}
+        Selected Player:
+        {{showSelectedPlayer.name}}
     </li>
-    <input type="button" class="increment" value="Give 5 Points">
-    <input type="button" class="decrement" value="Take 5 Points">
-    <input type="button" class="removeBtn" value="Remove player">
-    {{/if}}
+    <input class="increment btn btn-primary" type="button" value="Give 5 Points">
+    <input class="decrement btn btn-primary" type="button" value="Take 5 Points">
+    <input class="removeBtn btn btn-danger" type="button" value="Remove player">
+{{/if}}
 </template>
 
 <template name="addPlayerForm">
+<div class=addPlayer>
     {{#if currentUser}}
-        <form class="addForm">
-            <input type="text" name="playerName" placeholder="Player Name">
-            <input type="text" name="playerScore" placeholder="Player Score">
-            <input type="submit" value="Add Player">
+        <form class="addForm form-inline">
+            <div>
+                <input name="playerName" placeholder="Player Name" type="text">
+                <input name="playerScore" placeholder="Player Score" type="text">
+            </div>
+            <div>
+                <input class="btn btn-info" type="submit" value="Add Player">
+            </div>
         </form>
     {{/if}}
+</div>
 </template>
